@@ -26,7 +26,7 @@ const Notes = () => {
         {
             queryKey: ['notes', debouncedFilter, page],
             queryFn: () => fetchNotes(debouncedFilter, page, perPage),
-            refetchOnWindowFocus: false, // temp
+            refetchOnWindowFocus: false,
             placeholderData: (prevData) => prevData,
         }
     )
