@@ -1,4 +1,3 @@
-// notes/NoteDetails.client
 'use client'
 
 import { useQuery } from '@tanstack/react-query'
@@ -14,17 +13,16 @@ const NoteDetailsClient = () => {
     const { data: note, isLoading, error } = useQuery<Note, Error>({
         queryKey: ['note', id],
         queryFn: () => fetchNoteById(id),
-        refetchOnMount: false,
     })
 
     if (isLoading) return <p>Loading, please wait...</p>
-    if (error) return <p>Something went wrong.</p>;
+    if (error || !note) return <p>Something went wrong.</p>;
 
     return (
         <div className={css.container}>
             <div className={css.item}>
                 <div className={css.header}>
-                    <h2>Note title</h2>
+                    <h2>{note.title}</h2>
                 </div>
                 <p className={css.tag}>{note?.tag}</p>
                 <p className={css.content}>{note?.content}</p>

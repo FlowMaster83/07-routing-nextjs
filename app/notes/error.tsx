@@ -1,18 +1,9 @@
-// app/notes/[id]/error.tsx
-
-'use client'
+'use client';
 
 type Props = {
-    error: Error;
+  error: Error;
+};
+
+export default function NotesError({ error }: Props) {
+  return <p>Could not fetch the list of notes. {error.message}</p>;
 }
-
-const Error = ({ error }: Props) => {
-    return (
-        <div>
-            <p>Could not fetch note details. {error.message}</p>
-        </div>
-    )
-
-}
-
-export default Error
