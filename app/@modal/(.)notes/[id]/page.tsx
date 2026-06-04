@@ -4,7 +4,7 @@ import Modal from '@/components/Modal/Modal';
 import { fetchNoteById } from '@/lib/api';
 
 import css from './NotePreview.module.css';
-import BackButton from './Button';
+import NotePreviewClient from './NotePreview.client';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -18,7 +18,7 @@ const notePreview = async ({ params }: Props) => {
     <Modal>
       <div className={css.container}>
         <div className={css.item}>
-          <BackButton />
+          <NotePreviewClient />
           <div className={css.header}>
             <h2>{note.title}</h2>
             <span className={css.tag}>{note.tag}</span>
