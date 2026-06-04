@@ -1,6 +1,8 @@
 import type { Note } from '../types/note';
 import axios from 'axios';
 
+import { NoteTag } from '../types/note';
+
 export interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
@@ -17,10 +19,11 @@ const api = axios.create({
 export const fetchNotes = async (
   search: string = '',
   page: number = 1,
-  perPage: number = 12
+  perPage: number = 12,
+  tag?: NoteTag
 ): Promise<FetchNotesResponse> => {
   const response = await api.get<FetchNotesResponse>('/notes', {
-    params: { search, page, perPage },
+    params: { search, page, perPage, ...(tag && { tag }) },
   });
   return response.data;
 };
