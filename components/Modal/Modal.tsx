@@ -53,7 +53,6 @@ export default function Modal({ children, onClose }: ModalProps) {
       aria-modal="true"
     >
       <div className={css.modal}>
-        <button onClick={close}>BACK</button>
         {children}
       </div>
     </div>,

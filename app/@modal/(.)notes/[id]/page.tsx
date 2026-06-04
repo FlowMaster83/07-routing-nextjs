@@ -3,6 +3,9 @@
 import Modal from '@/components/Modal/Modal';
 import { fetchNoteById } from '@/lib/api';
 
+import css from './NotePreview.module.css';
+import BackButton from './BackButton';
+
 type Props = {
   params: Promise<{ id: string }>;
 };
@@ -13,9 +16,19 @@ const notePreview = async ({ params }: Props) => {
 
   return (
     <Modal>
-      <h2>{note.title}</h2>
-      <p>{note.content}</p>
-      <p>{note.tag}</p>
+      <div className={css.container}>
+        <div className={css.item}>
+          <BackButton />
+          <div className={css.header}>
+            <h2>{note.title}</h2>
+            <span className={css.tag}>{note.tag}</span>
+          </div>
+          <p className={css.content}>{note.content}</p>
+          <p className={css.date}>
+            {new Date(note.createdAt).toLocaleDateString()}
+          </p>
+        </div>
+      </div>
     </Modal>
   );
 };
