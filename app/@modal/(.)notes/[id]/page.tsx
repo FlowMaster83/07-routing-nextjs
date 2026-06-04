@@ -4,7 +4,7 @@ import Modal from '@/components/Modal/Modal';
 import { fetchNoteById } from '@/lib/api';
 
 import css from './NotePreview.module.css';
-import BackButton from './BackButton';
+import BackButton from './Button';
 
 type Props = {
   params: Promise<{ id: string }>;
