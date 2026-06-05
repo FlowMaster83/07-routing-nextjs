@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useParams } from 'next/navigation';
 import { useDebounce } from 'use-debounce';
 
 import { fetchNotes } from '@/lib/api';
@@ -16,11 +15,11 @@ import Pagination from '@/components/Pagination/Pagination';
 
 import css from './NotesPage.module.css';
 
-export default function NotesClient() {
-  const params = useParams();
-  const slug = params.slug as string[];
-  const selectedTag = slug?.[0];
-  const tag = selectedTag === 'all' ? undefined : selectedTag as NoteTag;
+type Props = {
+  tag?: NoteTag;
+};
+
+export default function NotesClient({ tag }: Props) {
 
   const [page, setPage] = useState<number>(1);
   const [filter, setFilter] = useState<string>('');
@@ -33,7 +32,7 @@ export default function NotesClient() {
     queryKey: ['notes', debouncedFilter, page, tag],
     queryFn: () => fetchNotes(debouncedFilter, page, perPage, tag),
     refetchOnWindowFocus: false,
-    placeholderData: previousData => previousData,
+    placeholderData: (previousData) => previousData,
   });
 
   const notes = data?.notes ?? [];

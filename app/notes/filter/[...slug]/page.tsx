@@ -23,7 +23,7 @@ export default async function FilterPage({ params }: Props) {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <NotesClient />
+      <NotesClient tag={tag}/>
     </HydrationBoundary>
   );
 }
