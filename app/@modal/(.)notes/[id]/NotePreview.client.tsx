@@ -13,9 +13,15 @@ type Props = {
 export default function NotePreviewClient({ id }: Props) {
   const router = useRouter();
 
-  const { data: note, isLoading, isError, error } = useQuery({
+  const {
+    data: note,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
     queryKey: ['note', id],
     queryFn: () => fetchNoteById(id),
+    refetchOnMount: false,
   });
 
   if (isLoading) return <p>Loading...</p>;
